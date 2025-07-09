@@ -1,24 +1,28 @@
 <template>
   <Navbar />
-
   <div class="about-content">
-    <div class="slide-overlay" v-if="showOverlay">
-   
-    </div>
+    <!-- Optional black overlay animation -->
+    <div class="slide-overlay" v-if="showOverlay"></div>
 
-    <div class="about-hero">
+    <!-- Hero Section -->
+    <div class="about-hero" :class="{ 'image-loaded': imageLoaded }">
+      <img
+        class="hero-image"
+        src="/images/lala.jpg"
+        alt="About Hero"
+        @load="imageLoaded = true"
+      />
       <div class="overlay"></div>
       <div class="about-text">ABOUT</div>
     </div>
 
+    <!-- Quote Section -->
     <div class="about-quote-row">
       <div class="quote-author-left">CULSE</div>
       <div class="quote-body">
         <p>
           Creativity isn’t just about being different — it’s about being honest.
-          It’s about crafting something that feels bold yet familiar, sharp yet
-          comforting. Something that reflects your experience, your values, and
-          your voice in a way that’s both powerful and deeply human.
+          It’s about crafting something that feels bold yet familiar, sharp yet comforting.
           <br /><br />
           A mixture of heart and culture.
         </p>
@@ -32,6 +36,7 @@ import { ref, onMounted } from 'vue'
 import Navbar from '../components/Navbar.vue'
 
 const showOverlay = ref(true)
+const imageLoaded = ref(false)
 
 onMounted(() => {
   setTimeout(() => {
@@ -41,9 +46,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Hero and Overlay Animation */
 .about-content {
   position: relative;
   z-index: 1;
+  
 }
 
 .slide-overlay {
@@ -54,18 +61,7 @@ onMounted(() => {
   height: 100vh;
   background-color: black;
   z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   animation: slideDown 2.5s ease forwards;
-}
-
-.overlay-text {
-  color: white;
-  font-size: 3rem;
-  font-family: 'Rework Display Regular', sans-serif;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
 }
 
 @keyframes slideDown {
@@ -77,23 +73,26 @@ onMounted(() => {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url('/images/lala.jpg');
-  background-size: 110%;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: zoomOut 2s ease-out 1s forwards;
-}
-@media (max-width: 768px) {
-  .about-hero {
-    animation: none; /* optional: remove zoom for mobile */
-    background-size: cover;
-  }
+  background-color: black;
+  overflow: hidden;
 }
 
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  opacity: 0;
+  transition: opacity 2s ease, transform 3s ease;
+  z-index: 0;
+}
 
-@keyframes zoomOut {
-  0% { background-size: 110%; }
-  100% { background-size: 100%; }
+.about-hero.image-loaded .hero-image {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .overlay {
@@ -136,6 +135,7 @@ onMounted(() => {
   }
 }
 
+/* Quote Section */
 .about-quote-row {
   display: flex;
   justify-content: space-between;
