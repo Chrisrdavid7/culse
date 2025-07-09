@@ -11,6 +11,7 @@
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script setup>
@@ -18,6 +19,7 @@
 
 
 import { onMounted } from 'vue'
+import Footer from '@/components/Footer.vue'
 
 onMounted(() => {
   const savedScrollY = parseInt(localStorage.getItem('scrollY')) || 0
@@ -62,6 +64,7 @@ const sections = [
   // Add more as needed
 ]
 </script>
+
 <style scoped>
 .expertise-page {
   background-color: #fcfaf5;

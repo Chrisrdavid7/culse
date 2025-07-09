@@ -23,23 +23,37 @@
         <p>
           Creativity isn’t just about being different — it’s about being honest.
           It’s about crafting something that feels bold yet familiar, sharp yet comforting.
-          <br /><br />
-          A mixture of heart and culture.
+         
         </p>
       </div>
     </div>
     <div class="about-bottom-tagline">
-      WE SIT AT<br />THE CENTER<br />OF CULTURE
+      THE CENTER<br />OF CULTURE
     </div>
   </div>
+    <!-- Other hero/overlay/video content above -->
+    <ExpertisePreview :sections="sections" />
+    <Footer />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import Navbar from '../components/Navbar.vue'
+import ExpertisePreview from '../components/ExpertisePreview.vue'
+import Footer from '@/components/Footer.vue'
 
 const showOverlay = ref(true)
 const imageLoaded = ref(false)
+
+
+const sections = [
+  { title: 'SPORTS', image: '/images/Melo.jpg' },
+  { title: 'FASHION', image: '/images/Ciara.jpg' },
+  { title: 'BRANDS', image: '/images/Kiyan.jpg' },
+  { title: 'TELEVISION', image: '/images/Andrea.jpeg' },
+  { title: 'MUSIC', image: '/images/jvke.jpg' },
+  { title: 'CULTURE AND INFLUENCE', image: '/images/kai2.jpg' },
+]
 
 onMounted(() => {
   setTimeout(() => {
@@ -180,7 +194,7 @@ onMounted(() => {
   color: #111;
   line-height: 0.9;
   letter-spacing: 0.125rem;
-  margin-bottom: 8rem;
+  margin-top: -13rem;
 }
 
 @media (max-width: 768px) {

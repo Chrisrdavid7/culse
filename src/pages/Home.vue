@@ -1,7 +1,8 @@
 <template>
   <!-- Slide-down overlay with centered CULSE -->
   <div v-if="showOverlay" class="slide-overlay">
-    <div class="overlay-text">CULSE</div>
+    <img src="/images/Culse.jpg" alt="CULSE Logo" class="overlay-image" />
+
   </div>
 
    <!-- 🔽 Add video here -->
@@ -92,4 +93,16 @@ onMounted(() => {
   .headline { font-size: 2.2rem; }
   .tagline  { font-size: 0.7rem; }
 }
+.overlay-image {
+  max-width: 300px;
+  width: 80%;
+  height: auto;
+  z-index: 99999;
+  animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 </style>
