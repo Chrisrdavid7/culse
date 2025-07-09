@@ -83,6 +83,13 @@ onMounted(() => {
   background-repeat: no-repeat;
   animation: zoomOut 2s ease-out 1s forwards;
 }
+@media (max-width: 768px) {
+  .about-hero {
+    animation: none; /* optional: remove zoom for mobile */
+    background-size: cover;
+  }
+}
+
 
 @keyframes zoomOut {
   0% { background-size: 110%; }

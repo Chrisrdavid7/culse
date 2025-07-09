@@ -70,16 +70,38 @@ const sections = [
 }
 
 .title {
-  font-size: 6.25rem;
-  letter-spacing: 0.425rem;
-  line-height: 0.9;
+  font-size: clamp(2.5rem, 6vw, 6.25rem); /* fluid size */
+  letter-spacing: 0.25rem;
+  line-height: 1;
   font-weight: 600;
   text-align: center;
   margin-bottom: 12rem;
   text-transform: uppercase;
   font-family: 'Rework Display Regular', sans-serif;
+  word-break: break-word;
+  padding: 0 1rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+  animation: fadeIn 1s ease-out;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 4rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 6rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .title {
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    margin-bottom: 4rem;
+    padding: 0 1rem;
+  }
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* keep 3 per row */
@@ -162,5 +184,29 @@ const sections = [
 .section-image:hover {
   transform: scale(1.05); /* Only the image zooms */
 }
+@media (max-width: 640px) {
+  .expertise-section {
+    margin-top: 0 !important;
+  }
+
+  .expertise-section:nth-child(1),
+  .expertise-section:nth-child(2),
+  .expertise-section:nth-child(3),
+  .expertise-section:nth-child(4),
+  .expertise-section:nth-child(5),
+  .expertise-section:nth-child(6),
+  .expertise-section:nth-child(7) {
+    margin-top: 3rem; /* or adjust as needed */
+  }
+
+  .grid {
+    gap: 3rem;
+  }
+
+  .section-image {
+    height: auto;
+  }
+}
+
 
 </style>
