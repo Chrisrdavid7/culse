@@ -52,8 +52,8 @@ const sections = [
   },
  
   {
-    title: "Live Entertainment",
-    image: "/images/kai2.jpg",
+    title: "Hospitality",
+    image: "/images/Cindy.jpg",
   },
   {
     title: "Culture and Influence",
