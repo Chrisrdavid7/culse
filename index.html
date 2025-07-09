@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CULSE</title>
+
+    <style>
+      
+      @font-face {
+    font-family: 'Rework Display Regular';
+    src: url('/fonts/ReworkDisplayTRIAL-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Soehne';
+    src: url('/fonts/Soehne5.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        font-family: 'Rework Display Regular', sans-serif;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -webkit-overflow-scrolling: touch; /* iOS smooth bounce */
+        background-color: rgb(252, 250, 245); /* fallback background */
+      }
+
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      #app {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+  
+    <!-- Vue Mount Point -->
+    <div id="app"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
