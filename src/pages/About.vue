@@ -28,6 +28,9 @@
         </p>
       </div>
     </div>
+    <div class="about-bottom-tagline">
+      WE SIT AT<br />THE CENTER<br />OF CULTURE
+    </div>
   </div>
 </template>
 
@@ -166,6 +169,24 @@ onMounted(() => {
   font-family: 'Soehne', sans-serif;
   font-weight: 500;
   text-align: left;
+}
+
+.about-bottom-tagline {
+  font-size: 6.25rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Rework Display Regular', sans-serif;
+  font-weight: 600;
+  color: #111;
+  line-height: 0.9;
+  letter-spacing: 0.125rem;
+  margin-bottom: 8rem;
+}
+
+@media (max-width: 768px) {
+  .about-bottom-tagline {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
