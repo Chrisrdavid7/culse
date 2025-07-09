@@ -194,7 +194,7 @@ onMounted(() => {
   color: #111;
   line-height: 0.9;
   letter-spacing: 0.125rem;
-  margin-top: -13rem;
+  margin-top: -18rem;
 }
 
 @media (max-width: 768px) {
