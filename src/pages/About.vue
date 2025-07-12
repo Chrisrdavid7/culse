@@ -22,9 +22,7 @@
       <div class="quote-author-left">CULSE</div>
       <div class="quote-body">
         <p>
-          Culse is the creative force powering today’s cultural pulse —
-          uniting the talent, moments, and movements that define entertainment,
-          sports, fashion, and influence.
+          Culse is a creative disruptor fueling culture’s next wave — where iconic talent, viral moments, and boundary-breaking movements collide across entertainment, fashion, sports, and influence.
         </p>
       </div>
     </section>
@@ -197,6 +195,7 @@ onMounted(() => {
 .about-quote-row {
   display: flex;
   justify-content: space-between;
+  height: 50vh;
   max-width: 1500px;
   margin: 13rem auto 6rem;
   padding: 0 2rem;
@@ -214,7 +213,7 @@ onMounted(() => {
 
 .quote-body {
   flex: 4;
-  font-size: 2.25rem;
+  font-size: 3.25rem;
   font-family: 'Soehne', sans-serif;
   font-weight: 500;
   color: #111;
