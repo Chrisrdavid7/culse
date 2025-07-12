@@ -1,11 +1,12 @@
 <template>
   <Navbar />
+
   <div class="about-content">
-    <!-- Optional black overlay animation -->
+    <!-- Overlay -->
     <div class="slide-overlay" v-if="showOverlay"></div>
 
-    <!-- Hero Section -->
-    <div class="about-hero" :class="{ 'image-loaded': imageLoaded }">
+    <!-- Hero -->
+    <section class="about-hero" :class="{ 'image-loaded': imageLoaded }">
       <img
         class="hero-image"
         src="/images/lala.jpg"
@@ -14,62 +15,113 @@
       />
       <div class="overlay"></div>
       <div class="about-text">ABOUT</div>
-    </div>
+    </section>
 
-    <!-- Quote Section -->
-    <div class="about-quote-row">
+    <!-- Quote -->
+    <section class="about-quote-row">
       <div class="quote-author-left">CULSE</div>
       <div class="quote-body">
         <p>
-          Creativity isn’t just about being different — it’s about being honest.
-          It’s about crafting something that feels bold yet familiar, sharp yet comforting.
-         
+          Culse is the creative force powering today’s cultural pulse —
+          uniting the talent, moments, and movements that define entertainment,
+          sports, fashion, and influence.
         </p>
       </div>
-    </div>
-    <div class="about-bottom-tagline">
-      THE CENTER<br />OF CULTURE
-    </div>
+    </section>
+
+    <!-- ✨ Endless Auto-Scroll Carousel -->
+    <section class="card-carousel-container">
+      <div class="card-carousel-track">
+        <AboutCard
+          v-for="(image, index) in loopedImages"
+          :key="index"
+          :src="image.src"
+          :alt="image.alt"
+          :metric="image.metric"
+          :title="image.label"
+          :subtitle="image.sublabel"
+          :desc="image.desc"
+        />
+      </div>
+    </section>
+
+    <!-- Tagline -->
+    <section class="about-bottom-tagline">
+      MOVING AT<br />THE SPEED OF CULTURE
+    </section>
   </div>
-    <!-- Other hero/overlay/video content above -->
-    <ExpertisePreview :sections="sections" />
-    <Footer />
+
+  <Footer />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import Navbar from '../components/Navbar.vue'
-import ExpertisePreview from '../components/ExpertisePreview.vue'
 import Footer from '@/components/Footer.vue'
+import AboutCard from '@/components/AboutCard.vue'
 
 const showOverlay = ref(true)
 const imageLoaded = ref(false)
 
-
-const sections = [
-  { title: 'SPORTS', image: '/images/Melo.jpg' },
-  { title: 'FASHION', image: '/images/Ciara.jpg' },
-  { title: 'BRANDS', image: '/images/Kiyan.jpg' },
-  { title: 'TELEVISION', image: '/images/Andrea.jpeg' },
-  { title: 'MUSIC', image: '/images/jvke.jpg' },
-  { title: 'CULTURE AND INFLUENCE', image: '/images/kai2.jpg' },
+const carouselImages = [
+  {
+    src: '/images/badBunny.jpg',
+    alt: 'Bunny',
+    metric: 'Brands',
+    label: 'TWNTY TWO',
+    sublabel: '2023',
+    desc: 'Bad Bunny rocks a TWNTY-TWO snapback during his 2023 Grammys performance, bringing major attention to the emerging brand.',
+  },
+  {
+    src: '/images/Carl.jpg',
+    alt: 'Carl',
+    metric: 'Television',
+    label: 'Carl Radke',
+    sublabel: '2025',
+    desc: 'Carl Radke appears on Watch What Happens Live with Andy Cohen, flashing a confident smile while holding the show’s signature question card.',
+  },
+  {
+    src: '/images/Kiyan.jpg',
+    alt: 'Kiyan',
+    metric: 'Sports',
+    label: 'Kiyan Anthony',
+    sublabel: '2024',
+    desc: 'Kiyan Anthony poses courtside at Madison Square Garden for a paid partnership with American Eagle, blending street style with effortless cool.',
+  },
+  {
+    src: '/images/jvke.jpg',
+    alt: 'JVKE',
+    metric: 'Music',
+    label: 'JVKE',
+    sublabel: '2023',
+    desc: 'Jvke poses for Billboard Magizine.',
+  },
+  {
+    src: '/images/Andrea.jpeg',
+    alt: 'Andrea',
+    metric: 'Television',
+    label: 'Andrea Denver',
+    sublabel: '2024',
+    desc: 'Andrea Denver Photoshoot',
+  },
 ]
 
+// Duplicate the images to create an endless loop
+const loopedImages = [...carouselImages, ...carouselImages]
+
 onMounted(() => {
-  setTimeout(() => {
-    showOverlay.value = false
-  }, 2500)
+  setTimeout(() => (showOverlay.value = false), 2500)
 })
 </script>
 
 <style scoped>
-/* Hero and Overlay Animation */
 .about-content {
   position: relative;
   z-index: 1;
-  
+  padding-bottom: 8rem;
 }
 
+/* Slide Overlay Animation */
 .slide-overlay {
   position: fixed;
   top: 0;
@@ -86,6 +138,7 @@ onMounted(() => {
   100% { transform: translateY(100%); }
 }
 
+/* Hero Section */
 .about-hero {
   position: relative;
   height: 100vh;
@@ -114,19 +167,8 @@ onMounted(() => {
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.15) 20%,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(0, 0, 0, 0) 60%,
-    rgba(0, 0, 0, 0.4) 80%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 60%, rgba(0, 0, 0, 0.7));
   z-index: 1;
 }
 
@@ -139,11 +181,10 @@ onMounted(() => {
   font-size: 6.25rem;
   color: white;
   font-weight: 600;
-  line-height: 0.9;
   text-transform: uppercase;
   font-family: 'Rework Display Regular', sans-serif;
   letter-spacing: 0.125rem;
-  margin-bottom: 0.5rem;
+  line-height: 0.9;
 }
 
 @media (max-width: 768px) {
@@ -156,35 +197,67 @@ onMounted(() => {
 .about-quote-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   max-width: 1500px;
-  margin: 13rem auto 30rem;
+  margin: 13rem auto 6rem;
   padding: 0 2rem;
   gap: 2rem;
 }
 
 .quote-author-left {
   flex: 1;
-  font-weight: 600;
   font-size: 0.9rem;
+  font-weight: 600;
   text-transform: uppercase;
   color: #111;
   font-family: 'Rework Display Regular', sans-serif;
-  text-align: left;
-  margin-left: 0;
-  margin-right: 4rem;
 }
 
 .quote-body {
   flex: 4;
   font-size: 2.25rem;
-  line-height: 1.2;
-  color: #111;
   font-family: 'Soehne', sans-serif;
   font-weight: 500;
-  text-align: left;
+  color: #111;
+  line-height: 1.2;
 }
 
+@media (max-width: 768px) {
+  .about-quote-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .quote-author-left {
+    margin-bottom: 1rem;
+  }
+  .quote-body {
+    font-size: 1.5rem;
+  }
+}
+
+/* Auto-Scroll Carousel */
+.card-carousel-container {
+  overflow: hidden;
+  padding: 4rem 0;
+  background-color: #fcfaf5;
+}
+
+.card-carousel-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: scrollLeft 60s linear infinite;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Tagline */
 .about-bottom-tagline {
   font-size: 6.25rem;
   text-align: center;
@@ -194,27 +267,12 @@ onMounted(() => {
   color: #111;
   line-height: 0.9;
   letter-spacing: 0.125rem;
-  margin-top: -18rem;
+  margin: 8rem 0 4rem;
 }
 
 @media (max-width: 768px) {
   .about-bottom-tagline {
     font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-quote-row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .quote-author-left {
-    margin-bottom: 1rem;
-  }
-
-  .quote-body {
-    font-size: 1.5rem;
   }
 }
 </style>
