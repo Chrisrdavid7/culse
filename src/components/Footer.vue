@@ -12,7 +12,7 @@
           <h4>Company</h4>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/expertise">Expertise</a></li>
+            <li><a href="/ventures">Ventures</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>

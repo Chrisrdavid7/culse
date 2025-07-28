@@ -43,10 +43,19 @@
       </div>
     </section>
 
-    <!-- Tagline -->
-    <section class="about-bottom-tagline">
-      MOVING AT<br />THE SPEED OF CULTURE
-    </section>
+    <!-- Expertise Section (formerly Expertise.vue) -->
+<section class="expertise-page">
+  <h1 id="scroll-section" class="title">EXPERTISE</h1>
+  <div class="grid">
+    <div class="expertise-section" v-for="(section, index) in sections" :key="index">
+      <h2 class="section-title">{{ section.title }}</h2>
+      <div class="image-wrapper">
+        <img :src="section.image" :alt="section.title" class="section-image" />
+      </div>
+    </div>
+  </div>
+</section>
+
   </div>
 
   <Footer />
@@ -110,6 +119,17 @@ const loopedImages = [...carouselImages, ...carouselImages]
 onMounted(() => {
   setTimeout(() => (showOverlay.value = false), 2500)
 })
+
+const sections = [
+  { title: "SPORTS", image: "/images/Melo.jpg" },
+  { title: "FASHION", image: "/images/Ciara.jpg" },
+  { title: "BRANDS", image: "/images/Kiyan.jpg" },
+  { title: "Music", image: "/images/jvke.jpg" },
+  { title: "Television", image: "/images/Andrea.jpeg" },
+  { title: "Hospitality", image: "/images/Cindy.jpg" },
+ 
+]
+
 </script>
 
 <style scoped>
@@ -274,4 +294,99 @@ onMounted(() => {
     font-size: 2.5rem;
   }
 }
+.expertise-page {
+  background-color: #fcfaf5;
+  padding: 13rem 2rem 3rem;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: clamp(2.5rem, 6vw, 6.25rem);
+  letter-spacing: 0.25rem;
+  line-height: 1;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 12rem;
+  text-transform: uppercase;
+  font-family: 'Rework Display Regular', sans-serif;
+  padding: 0 1rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .title {
+    font-size: 4rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.expertise-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.expertise-section:nth-child(1) { margin-top: 0rem; }
+.expertise-section:nth-child(2) { margin-top: 9rem; }
+.expertise-section:nth-child(3) { margin-top: 21rem; }
+.expertise-section:nth-child(4) { margin-top: -13em; }
+.expertise-section:nth-child(5) { margin-top: -4rem; }
+.expertise-section:nth-child(6) { margin-top: 3rem; }
+.expertise-section:nth-child(7) { margin-top: -20rem; }
+
+@media (max-width: 640px) {
+  .expertise-section {
+    margin-top: 3rem !important;
+  }
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-family: 'Rework Semibold', sans-serif;
+}
+
+.image-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.section-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.9s ease;
+}
+
+.section-image:hover {
+  transform: scale(1.05);
+}
+
 </style>

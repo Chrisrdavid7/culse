@@ -1,15 +1,14 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '../pages/Home.vue'
 import About from '../pages/About.vue'
-import Expertise from '../pages/Expertise.vue'
+import Ventures from '../pages/Ventures.vue'
 import Contact from '../pages/Contact.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  { path: '/expertise', component: Expertise },
+  { path: '/ventures', component: Ventures },
   { path: '/contact', component: Contact }
 ]
 

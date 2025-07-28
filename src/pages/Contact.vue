@@ -6,33 +6,13 @@
     <div class="contact-grid">
       <div class="contact-item">
         <p class="label">GENERAL INQUIRIES:</p>
-        <a href="mailto:inquiries@culsecreative.com" class="link">
-          inquiries@culsecreative.com <span class="arrow">↗</span>
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <p class="label">LINKEDIN:</p>
-        <a href="https://linkedin.com/company/culse" target="_blank" class="link">
-          culse-creative <span class="arrow">↗</span>
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <p class="label">PRESS:</p>
-        <a href="mailto:press@culsecreative.com" class="link">
-          press@culsecreative.com <span class="arrow">↗</span>
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <p class="label">CAREER OPPORTUNITIES:</p>
-        <a href="https://culsecreative.com/careers" target="_blank" class="link">
-          CULSE career opportunities <span class="arrow">↗</span>
+        <a href="mailto:info@culsecreative.com" class="link">
+          info@culsecreative.com <span class="arrow">↗</span>
         </a>
       </div>
     </div>
   </div>
+
   <Footer />
 </template>
 
@@ -46,6 +26,10 @@ import Footer from '@/components/Footer.vue'
   min-height: 100vh;
   padding: 10rem 2rem 5rem;
   font-family: 'ReworkDisplayTRIAL-Regular', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-title {
@@ -64,16 +48,16 @@ import Footer from '@/components/Footer.vue'
 }
 
 .contact-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .label {
@@ -102,12 +86,14 @@ import Footer from '@/components/Footer.vue'
 .arrow {
   font-size: 1rem;
 }
+
 @media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
   .contact-title {
     font-size: 3rem;
+  }
+
+  .link {
+    font-size: 1.2rem;
   }
 }
 </style>

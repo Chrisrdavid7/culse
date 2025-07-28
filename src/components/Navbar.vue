@@ -6,7 +6,7 @@
         <router-link to="/about" class="nav-link" exact-active-class="active">ABOUT</router-link>
       </li>
       <li>
-        <router-link to="/expertise" class="nav-link" exact-active-class="active">EXPERTISE</router-link>
+        <router-link to="/ventures" class="nav-link" exact-active-class="active">VENTURES</router-link>
       </li>
       <li>
         <router-link to="/contact" class="nav-link" exact-active-class="active">CONTACT</router-link>
@@ -26,7 +26,7 @@ const isScrolled = ref(false)
 
 const updateNavbarStyle = () => {
   // Always black on /expertise and /contact
-  isBlackPage.value = ['/expertise', '/contact'].includes(route.path)
+  isBlackPage.value = ['/ventures', '/contact'].includes(route.path)
 }
 
 const handleScroll = () => {
