@@ -43,19 +43,20 @@ const ventures = [
     url: "https://playgigz.com"
   },
   {
+    title: "TWNTY TWO",
+    image: "/images/twntytwo.jpg",
+    description:
+      "TWNTY TWO is more than streetwear — it’s a cultural signal. Worn by icons, embraced by the underground, and built for those who define what’s next. Fashion that doesn’t follow trends — it creates them.",
+    url: "https://twnty-two.com/"
+  },
+  {
     title: "Quintyn Holdings",
     image: "/images/QWhiteBG.png",
     description:
       "Quintyn Holdings is the digital architect for the future — building high-performance websites and iconic brands for tomorrow’s most ambitious startups. Tech-forward, design-obsessed, and culture-aligned.",
     url: "https://quintynholdings.com"
   },
-  {
-    title: "TWNTY TWO",
-    image: "/images/twntytwo.jpg",
-    description:
-      "TWNTY TWO is more than streetwear — it’s a cultural signal. Worn by icons, embraced by the underground, and built for those who define what’s next. Fashion that doesn’t follow trends — it creates them.",
-    url: "https://twntytwo.com"
-  },
+ 
   {
     title: "Famous Nobody's",
     image: "/images/famous.jpg",
@@ -75,7 +76,7 @@ const ventures = [
     image: "/images/9jones.jpg",
     description:
       "9 Jones is nightlife reimagined — a members-only experience where luxury, sound, and style collide. More than a venue, it’s a vibe engineered for the influential and unforgettable.",
-    url: "https://9jones.com"
+    url: "https://www.instagram.com/9jonesnyc/?hl=en"
   },
 ]
 </script>
