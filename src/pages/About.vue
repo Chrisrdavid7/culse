@@ -1,11 +1,12 @@
 <template>
   <Navbar />
 
-  <div class="about-content">
-    <!-- Overlay -->
-    <div class="slide-overlay" v-if="showOverlay"></div>
+  <!-- Slide-down overlay -->
+  <div class="slide-overlay" v-if="showOverlay"></div>
 
-    <!-- Hero -->
+  <div class="about-content">
+
+    <!-- ── 1. HERO ── -->
     <section class="about-hero" :class="{ 'image-loaded': imageLoaded }">
       <img
         class="hero-image"
@@ -14,47 +15,88 @@
         @load="imageLoaded = true"
       />
       <div class="overlay"></div>
-      <div class="about-text">ABOUT</div>
-    </section>
-
-    <!-- Quote -->
-    <section class="about-quote-row">
-      <div class="quote-author-left">CULSE</div>
-      <div class="quote-body">
-        <p>
-          Culse is a creative disruptor fueling culture’s next wave — where iconic talent, viral moments, and boundary-breaking movements collide across entertainment, fashion, sports, and influence.
-        </p>
+      <div class="hero-footer">
+        <div class="hero-eyebrow">CULSE CREATIVE</div>
+        <div class="about-text">ABOUT</div>
       </div>
     </section>
 
-    <!-- ✨ Endless Auto-Scroll Carousel -->
-    <section class="card-carousel-container">
-      <div class="card-carousel-track">
-        <AboutCard
-          v-for="(image, index) in loopedImages"
-          :key="index"
-          :src="image.src"
-          :alt="image.alt"
-          :metric="image.metric"
-          :title="image.label"
-          :subtitle="image.sublabel"
-          :desc="image.desc"
-        />
+    <!-- ── 2. MISSION ── -->
+    <section class="mission-section">
+      <div class="mission-inner">
+        <div class="mission-left">
+          <span class="mission-label">WHO WE ARE</span>
+        </div>
+        <div class="mission-right">
+          <p class="mission-body">
+            Culse is a creative disruptor fueling culture's next wave — where iconic talent, viral moments, and boundary-breaking movements collide across entertainment, fashion, sports, and influence.
+          </p>
+          <div class="mission-stats">
+            <div class="stat">
+              <div class="stat-n">8+</div>
+              <div class="stat-l">Ventures</div>
+            </div>
+            <div class="stat">
+              <div class="stat-n">5</div>
+              <div class="stat-l">Verticals</div>
+            </div>
+            <div class="stat">
+              <div class="stat-n">100M+</div>
+              <div class="stat-l">Combined reach</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Expertise Section (formerly Expertise.vue) -->
-<section class="expertise-page">
-  <h1 id="scroll-section" class="title">EXPERTISE</h1>
-  <div class="grid">
-    <div class="expertise-section" v-for="(section, index) in sections" :key="index">
-      <h2 class="section-title">{{ section.title }}</h2>
-      <div class="image-wrapper">
-        <img :src="section.image" :alt="section.title" class="section-image" />
+    <!-- ── 3. VERTICALS ── -->
+    <section class="verticals-section">
+      <div class="verticals-inner">
+        <span class="section-label">WHAT WE DO</span>
+        <div class="verticals-list">
+          <div
+            class="vertical-item"
+            v-for="(v, i) in verticals"
+            :key="i"
+            :style="{ transitionDelay: i * 0.08 + 's' }"
+          >
+            <span class="v-num">{{ String(i + 1).padStart(2, '0') }}</span>
+            <span class="v-name">{{ v }}</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <!-- ── 4. FEATURED WORK (carousel) ── -->
+    <section class="work-section">
+      <div class="work-header">
+        <span class="section-label">FEATURED WORK</span>
+        <h2 class="work-title">In the room<br>that matters</h2>
+      </div>
+      <div class="card-carousel-container">
+        <div class="card-carousel-track">
+          <AboutCard
+            v-for="(item, index) in loopedImages"
+            :key="index"
+            :src="item.src"
+            :alt="item.alt"
+            :metric="item.metric"
+            :title="item.label"
+            :subtitle="item.sublabel"
+            :desc="item.desc"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. CTA ── -->
+    <section class="about-cta">
+      <div class="cta-inner">
+        <p class="cta-sub">Ready to make moves?</p>
+        <h2 class="cta-heading">LET'S WORK<br>TOGETHER</h2>
+        <a href="/contact" class="cta-link">Get in touch ↗</a>
+      </div>
+    </section>
 
   </div>
 
@@ -70,10 +112,16 @@ import AboutCard from '@/components/AboutCard.vue'
 const showOverlay = ref(true)
 const imageLoaded = ref(false)
 
+onMounted(() => {
+  setTimeout(() => (showOverlay.value = false), 2500)
+})
+
+const verticals = ['Sports', 'Tech', 'Music', 'Television', 'Brands & Hospitality']
+
 const carouselImages = [
   {
     src: '/images/badBunny.jpg',
-    alt: 'Bunny',
+    alt: 'Bad Bunny',
     metric: 'Brands',
     label: 'TWNTY TWO',
     sublabel: '2023',
@@ -81,19 +129,19 @@ const carouselImages = [
   },
   {
     src: '/images/Carl.jpg',
-    alt: 'Carl',
+    alt: 'Carl Radke',
     metric: 'Television',
     label: 'Carl Radke',
     sublabel: '2025',
-    desc: 'Carl Radke appears on Watch What Happens Live with Andy Cohen, flashing a confident smile while holding the show’s signature question card.',
+    desc: 'Carl Radke appears on Watch What Happens Live with Andy Cohen, holding the show\'s signature question card.',
   },
   {
     src: '/images/Kiyan.jpg',
-    alt: 'Kiyan',
+    alt: 'Kiyan Anthony',
     metric: 'Sports',
     label: 'Kiyan Anthony',
     sublabel: '2024',
-    desc: 'Kiyan Anthony poses courtside at Madison Square Garden for a paid partnership with American Eagle, blending street style with effortless cool.',
+    desc: 'Kiyan Anthony poses courtside at Madison Square Garden for a paid partnership with American Eagle.',
   },
   {
     src: '/images/jvke.jpg',
@@ -101,62 +149,42 @@ const carouselImages = [
     metric: 'Music',
     label: 'JVKE',
     sublabel: '2023',
-    desc: 'Jvke poses for Billboard Magizine.',
+    desc: 'JVKE featured in Billboard Magazine.',
   },
   {
     src: '/images/Andrea.jpeg',
-    alt: 'Andrea',
+    alt: 'Andrea Denver',
     metric: 'Television',
     label: 'Andrea Denver',
     sublabel: '2024',
-    desc: 'Andrea Denver Photoshoot',
+    desc: 'Andrea Denver photoshoot.',
   },
 ]
 
-// Duplicate the images to create an endless loop
 const loopedImages = [...carouselImages, ...carouselImages]
-
-onMounted(() => {
-  setTimeout(() => (showOverlay.value = false), 2500)
-})
-
-const sections = [
-  { title: "SPORTS", image: "/images/Melo.jpg" },
-  { title: "FASHION", image: "/images/Ciara.jpg" },
-  { title: "BRANDS", image: "/images/Kiyan.jpg" },
-  { title: "Music", image: "/images/jvke.jpg" },
-  { title: "Television", image: "/images/Andrea.jpeg" },
-  { title: "Hospitality", image: "/images/Cindy.jpg" },
- 
-]
-
 </script>
 
 <style scoped>
-.about-content {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 8rem;
-}
 
-/* Slide Overlay Animation */
+/* ── Overlay ── */
 .slide-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
   background-color: black;
   z-index: 9999;
   animation: slideDown 2.5s ease forwards;
 }
-
 @keyframes slideDown {
-  0% { transform: translateY(0%); }
+  0%   { transform: translateY(0%); }
   100% { transform: translateY(100%); }
 }
 
-/* Hero Section */
+.about-content {
+  background-color: #fcfaf5;
+}
+
+/* ── 1. Hero ── */
 .about-hero {
   position: relative;
   height: 100vh;
@@ -164,229 +192,269 @@ const sections = [
   background-color: black;
   overflow: hidden;
 }
-
 .hero-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  inset: 0;
+  width: 100%; height: 100%;
   object-fit: cover;
-  transform: scale(1.1);
+  transform: scale(1.08);
   opacity: 0;
   transition: opacity 2s ease, transform 3s ease;
-  z-index: 0;
 }
-
 .about-hero.image-loaded .hero-image {
   opacity: 1;
   transform: scale(1);
 }
-
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 60%, rgba(0, 0, 0, 0.7));
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    transparent 40%,
+    rgba(0,0,0,0.65) 100%
+  );
   z-index: 1;
 }
-
-.about-text {
+.hero-footer {
   position: absolute;
   bottom: 7%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  font-size: 6.25rem;
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-family: 'Rework Display Regular', sans-serif;
-  letter-spacing: 0.125rem;
-  line-height: 0.9;
-}
-
-@media (max-width: 768px) {
-  .about-text {
-    font-size: 2rem;
-  }
-}
-
-/* Quote Section */
-.about-quote-row {
+  text-align: center;
   display: flex;
-  justify-content: space-between;
-  height: 50vh;
-  max-width: 1500px;
-  margin: 13rem auto 6rem;
-  padding: 0 2rem;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
-
-.quote-author-left {
-  flex: 1;
-  font-size: 0.9rem;
+.hero-eyebrow {
+  font-family: 'Rework Semibold', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.about-text {
+  font-family: 'Rework Display Regular', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 8rem);
   font-weight: 600;
   text-transform: uppercase;
-  color: #111;
-  font-family: 'Rework Display Regular', sans-serif;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: white;
 }
 
-.quote-body {
-  flex: 4;
-  font-size: 3.25rem;
+/* ── 2. Mission ── */
+.mission-section {
+  padding: 10rem 4rem 8rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e8e4dc;
+}
+.mission-inner {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+  align-items: start;
+}
+.mission-label {
+  font-family: 'Rework Semibold', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #999;
+  padding-top: 0.5rem;
+}
+.mission-body {
   font-family: 'Soehne', sans-serif;
-  font-weight: 500;
+  font-size: clamp(1.6rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1.25;
   color: #111;
-  line-height: 1.2;
+  margin: 0 0 4rem;
+}
+.mission-stats {
+  display: flex;
+  gap: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #e8e4dc;
+}
+.stat-n {
+  font-family: 'Rework Display Regular', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #111;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat-l {
+  font-family: 'Rework Semibold', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
 }
 
-@media (max-width: 768px) {
-  .about-quote-row {
-    flex-direction: column;
-    text-align: center;
-  }
-  .quote-author-left {
-    margin-bottom: 1rem;
-  }
-  .quote-body {
-    font-size: 1.5rem;
-  }
+/* ── 3. Verticals ── */
+.verticals-section {
+  padding: 6rem 4rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e8e4dc;
+}
+.verticals-inner {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+  align-items: start;
+}
+.section-label {
+  font-family: 'Rework Semibold', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #999;
+  padding-top: 0.5rem;
+}
+.verticals-list {
+  display: flex;
+  flex-direction: column;
+}
+.vertical-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #e8e4dc;
+  cursor: default;
+  transition: padding-left 0.3s ease;
+}
+.vertical-item:first-child { border-top: 1px solid #e8e4dc; }
+.vertical-item:hover { padding-left: 0.75rem; }
+.v-num {
+  font-family: 'Soehne', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: #bbb;
+  flex-shrink: 0;
+}
+.v-name {
+  font-family: 'Rework Display Regular', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 3.25rem);
+  font-weight: 400;
+  color: #111;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
-/* Auto-Scroll Carousel */
+/* ── 4. Featured Work ── */
+.work-section {
+  padding: 8rem 0;
+  background-color: #f5f2eb;
+  border-bottom: 1px solid #e8e4dc;
+  overflow: hidden;
+}
+.work-header {
+  padding: 0 4rem 4rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.work-title {
+  font-family: 'Rework Display Regular', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
 .card-carousel-container {
   overflow: hidden;
-  padding: 4rem 0;
-  background-color: #fcfaf5;
+  padding: 1rem 0;
 }
-
 .card-carousel-track {
   display: flex;
   gap: 1rem;
   width: max-content;
-  animation: scrollLeft 60s linear infinite;
+  animation: scrollLeft 50s linear infinite;
 }
-
 @keyframes scrollLeft {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-/* Tagline */
-.about-bottom-tagline {
-  font-size: 6.25rem;
+/* ── 5. CTA ── */
+.about-cta {
+  padding: 12rem 4rem;
   text-align: center;
-  text-transform: uppercase;
-  font-family: 'Rework Display Regular', sans-serif;
-  font-weight: 600;
-  color: #111;
-  line-height: 0.9;
-  letter-spacing: 0.125rem;
-  margin: 8rem 0 4rem;
+  background-color: #111;
 }
-
-@media (max-width: 768px) {
-  .about-bottom-tagline {
-    font-size: 2.5rem;
-  }
-}
-.expertise-page {
-  background-color: #fcfaf5;
-  padding: 13rem 2rem 3rem;
-  min-height: 100vh;
-}
-
-.title {
-  font-size: clamp(2.5rem, 6vw, 6.25rem);
-  letter-spacing: 0.25rem;
-  line-height: 1;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 12rem;
-  text-transform: uppercase;
-  font-family: 'Rework Display Regular', sans-serif;
-  padding: 0 1rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1500px;
+.cta-inner {
+  max-width: 800px;
   margin: 0 auto;
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .title {
-    font-size: 4rem;
-    letter-spacing: 0.2rem;
-    margin-bottom: 6rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .title {
-    font-size: 2.5rem;
-    margin-bottom: 4rem;
-    letter-spacing: 0.1rem;
-  }
-}
-
-.expertise-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 1.5rem;
 }
-
-.expertise-section:nth-child(1) { margin-top: 0rem; }
-.expertise-section:nth-child(2) { margin-top: 9rem; }
-.expertise-section:nth-child(3) { margin-top: 21rem; }
-.expertise-section:nth-child(4) { margin-top: -13em; }
-.expertise-section:nth-child(5) { margin-top: -4rem; }
-.expertise-section:nth-child(6) { margin-top: 3rem; }
-.expertise-section:nth-child(7) { margin-top: -20rem; }
-
-@media (max-width: 640px) {
-  .expertise-section {
-    margin-top: 3rem !important;
-  }
-}
-
-.section-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+.cta-sub {
   font-family: 'Rework Semibold', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #666;
+  margin: 0;
+}
+.cta-heading {
+  font-family: 'Rework Display Regular', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #f5f2eb;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.cta-link {
+  margin-top: 1rem;
+  font-family: 'Soehne', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #f5f2eb;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.cta-link:hover {
+  color: #c4b99a;
+  border-color: #c4b99a;
 }
 
-.image-wrapper {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 2px;
-}
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .mission-section  { padding: 6rem 1.5rem 5rem; }
+  .mission-inner    { grid-template-columns: 1fr; gap: 2rem; }
+  .mission-body     { font-size: 1.5rem; margin-bottom: 2.5rem; }
+  .mission-stats    { gap: 2rem; flex-wrap: wrap; }
+  .stat-n           { font-size: 2rem; }
 
-.section-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  transition: transform 0.9s ease;
-}
+  .verticals-section { padding: 4rem 1.5rem; }
+  .verticals-inner   { grid-template-columns: 1fr; gap: 2rem; }
+  .v-name            { font-size: 1.8rem; }
+  .vertical-item     { padding: 1rem 0; }
 
-.section-image:hover {
-  transform: scale(1.05);
-}
+  .work-section  { padding: 5rem 0; }
+  .work-header   { padding: 0 1.5rem 3rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .work-title    { font-size: 2.5rem; }
 
+  .about-cta     { padding: 7rem 1.5rem; }
+  .cta-heading   { font-size: 3.5rem; }
+}
 </style>
